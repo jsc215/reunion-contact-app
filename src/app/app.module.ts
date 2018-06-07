@@ -40,7 +40,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, AlertComponent, LoginComponent, RegiFormComponent, HomeComponent, LoginComponent],
+  declarations: [AppComponent, AlertComponent, LoginComponent, RegiFormComponent, HomeComponent],
 
   imports: [
     BrowserModule,
