@@ -63,6 +63,7 @@ export class RegiFormComponent implements OnInit {
       password: this.regiForm.value.password.password
     };
     this.userService.addUser(newUser)
+    .pipe()
     .subscribe((res) => {
       this.router.navigate(['/']);
       this.alertService.success('Registration Successful!');
