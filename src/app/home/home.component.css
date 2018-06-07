@@ -7,7 +7,8 @@ table {
   width: 100%;
 }
 
-td, th {
+td,
+th {
   width: 25%;
 }
 
@@ -20,3 +21,16 @@ th {
   font-size: 14px;
   color: maroon;
 }
+
+button {
+  float: right;
+  margin-right: 20px;
+  color: white;
+  background: maroon;
+}
+
+h3 {
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+

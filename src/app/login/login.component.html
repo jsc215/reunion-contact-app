@@ -1,17 +1,33 @@
 
+  <h4>Class of 1999 Contacts</h4>
 <mat-card class='login-form'>
-  <h3>Login to View the Contacts List</h3>
-  <form>
+  <h5>Login</h5>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <tr>
       <td>
-        <mat-form-field>
-          <input matInput placeholder='Email'>
+        <mat-form-field class="form-group">
+          <input 
+          matInput placeholder='Email' 
+          formControlName="email" 
+          class="form-control">
         </mat-form-field>
+        <mat-error>
+          <span *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">Enter a valid email address</span>
+        </mat-error>
       </td>
     </tr>
-    <mat-form-field>
-      <input matInput type='password' placeholder='Password'>
+    <mat-form-field class="form-group">
+      <input matInput type='password' 
+      placeholder='Password'
+      formControlName="password"
+      class="form-control">
     </mat-form-field>
+    <mat-error>
+      <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Enter a valid Password</span>
+    </mat-error>
+    <div>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+      <button mat-stroked-button routerLink='/register'>Sign up!</button>
+    </div>
   </form>
-  <button mat-raised-button routerLink='/register'>Register to be on the List</button>
 </mat-card>

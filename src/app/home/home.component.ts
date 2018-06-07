@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // currentUser: User;
+  currentUser: User;
   dataSource;
   displayedColumns = ['firstName', 'lastName', 'email'];
   users: User[] = [];
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService) {
     this.dataSource = new MatTableDataSource();
-    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {

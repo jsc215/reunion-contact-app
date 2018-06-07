@@ -1,9 +1,11 @@
+import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
+import { AlertService } from './services/alert.service';
 import { RegistrationValidator } from './shared/register.validator';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AuthGuard } from './auth.guard';
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -27,15 +29,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatPaginator } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { TableModule } from 'primeng/table';
+import { AlertComponent } from './alert.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegiFormComponent }
+  { path: 'register', component: RegiFormComponent },
+
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegiFormComponent, HomeComponent],
+  declarations: [AppComponent, AlertComponent, LoginComponent, RegiFormComponent, HomeComponent, LoginComponent],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -57,8 +63,14 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
-    UserService
+    {
+      provide: ErrorStateMatcher,
+      useClass: ShowOnDirtyErrorStateMatcher
+    },
+    UserService,
+    AuthGuard,
+    AuthenticationService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })
