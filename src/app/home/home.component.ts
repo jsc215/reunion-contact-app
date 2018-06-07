@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { User } from '../models/User';
 import { UserService } from '../services/user.service';
 /**
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userService: UserService) {
+    this.dataSource = new MatTableDataSource();
     // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   deleteUser(_id: string) {
-    this.userService.delete(_id).subscribe((res) => {
+    this.userService.deleteUser(_id).subscribe((res) => {
       return this.getUsers();
     });
   }
