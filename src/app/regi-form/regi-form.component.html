@@ -1,28 +1,49 @@
-<mat-card class='regi-form'>
+<mat-card class="regi-form">
 
   <h2>Registration Form</h2>
 
-  <form class='regi'>
-
-    <mat-form-field class='field'>
-      <input matInput placeholder='First Name'>
+  <form [formGroup]="regiForm" (ngSubmit)="onSubmit()" class="regi">
+    <mat-form-field class="field">
+      <input formControlName="firstName" matInput placeholder="First Name">
     </mat-form-field>
+    <mat-error>
+      <span *ngIf="!regiForm.get('firstName').valid && regiForm.get('firstName').touched">Please enter First Name</span>
+    </mat-error>
 
-    <mat-form-field class='field'>
-      <input matInput placeholder='Last Name'>
+    <mat-form-field class="field">
+      <input formControlName="lastName" matInput placeholder="Last Name">
     </mat-form-field>
+    <mat-error>
+      <span *ngIf="!regiForm.get('lastName').valid && regiForm.get('lastName').touched">Please enter Last Name</span>
+    </mat-error>
 
-    <mat-form-field class='field'>
-      <input matInput placeholder='Email'>
+    <mat-form-field class="field">
+      <input formControlName="email" matInput placeholder="Email">
     </mat-form-field>
+    <mat-error>
+      <span *ngIf="!regiForm.get('email').valid && regiForm.get('email').touched">Enter a valid email address</span>
+    </mat-error>
 
-    <mat-form-field class='field'>
-      <input matInput type='password' placeholder='Password'>
-    </mat-form-field>
-
-    <mat-form-field class='field'>
-      <input matInput type='password' placeholder='Confirm Password'>
-    </mat-form-field>
-
+    <div [formGroup]="passwordFormGroup">
+      <mat-form-field class="field">
+        <input formControlName='password' matInput type="password" placeholder="Password">
+      </mat-form-field>
+      <mat-error>
+        <span *ngIf="!passwordFormGroup.get('password').valid && passwordFormGroup.get('password').touched">Password is required</span>
+      </mat-error>
+      <mat-form-field class="field">
+        <input formControlName="repeatPassword" matInput type="password" placeholder="Confirm Password">
+      </mat-form-field>
+      <mat-error>
+        <span *ngIf="!passwordFormGroup.get('repeatPassword').valid && passwordFormGroup.get('repeatPassword').touched">Please Confirm Password
+        </span>
+      </mat-error>
+        <mat-error>
+          <span *ngIf="passwordFormGroup.errors">Passwords do not match
+          </span>
+        </mat-error>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="!regiForm.valid">Submit</button>
+    <button color='warn' mat-button routerLink= '/login'>Cancel</button>
   </form>
 </mat-card>
