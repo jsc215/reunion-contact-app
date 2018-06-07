@@ -14,7 +14,7 @@ import { first } from 'rxjs/operators';
 export class RegiFormComponent implements OnInit {
   regiForm: FormGroup;
   passwordFormGroup: FormGroup;
-  // _id = '';
+  _id = '';
   password = '';
   submitted = false;
   firstName = '';
