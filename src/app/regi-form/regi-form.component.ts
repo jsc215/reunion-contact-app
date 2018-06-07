@@ -14,7 +14,7 @@ import { first } from 'rxjs/operators';
 export class RegiFormComponent implements OnInit {
   regiForm: FormGroup;
   passwordFormGroup: FormGroup;
-  _id = '';
+  // _id = '';
   password = '';
   submitted = false;
   firstName = '';
@@ -56,7 +56,7 @@ export class RegiFormComponent implements OnInit {
       return;
     }
     const newUser = {
-      _id: this._id,
+      _id: this.regiForm.value._id,
       firstName: this.regiForm.value.firstName,
       lastName: this.regiForm.value.lastName,
       email: this.regiForm.value.email,
@@ -66,8 +66,8 @@ export class RegiFormComponent implements OnInit {
     this.userService.addUser(newUser)
     .pipe(first())
     .subscribe((res) => {
-      this.alertService.success('Registration Successful!', true);
       this.router.navigate(['/']);
+      this.alertService.success('Registration Successful!', true);
     },
     error => {
       this.alertService.error('Not sure what happened. Try again!', error.message);
