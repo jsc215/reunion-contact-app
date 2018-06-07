@@ -11,3 +11,12 @@
 .regi {
   padding: 25px;
 }
+
+.mat-stroked-button{
+  color: maroon;
+}
+
+.mat-raised-button {
+  background: maroon;
+  color: white;
+}

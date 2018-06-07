@@ -1,6 +1,6 @@
 .title {
   color: white;
-  flex: auto;
+  flex: 1;
   font-family: serif;
   /* text-align: center; */
 }
@@ -10,3 +10,4 @@ img {
   width: auto;
   border-radius: 5px;
 }
+

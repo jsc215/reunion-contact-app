@@ -1,10 +1,11 @@
-import { Router } from '@angular/router';
+import { Router, Routes, ActivatedRoute } from '@angular/router';
 import { UserService } from './../services/user.service';
 import { RegistrationValidator } from '../shared/register.validator';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { User } from '../models/User';
-
+import { AlertService } from '../services/alert.service';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-regi-form',
   templateUrl: './regi-form.component.html',
@@ -23,7 +24,8 @@ export class RegiFormComponent implements OnInit {
   constructor(
     private fBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {
     this.passwordFormGroup = this.fBuilder.group(
       {
@@ -61,11 +63,16 @@ export class RegiFormComponent implements OnInit {
       password: this.regiForm.value.password.password
     };
     this.submitted = true;
-    this.userService.addUser(newUser).subscribe((res) => {
-      this.router.navigate(['/']);
-      console.log(res);
+    this.userService.addUser(newUser)
+    .pipe(first())
+    .subscribe((res) => {
+      this.alertService.success('Registration Successful!', true);
+      this.router.navigate(['/login']);
+    },
+    error => {
+      this.alertService.error('Not sure what happened. Try again!', error.message);
     });
 
-    // console.log(newUser);
+    console.log(newUser);
   }
 }
