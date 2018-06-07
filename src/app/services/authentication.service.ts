@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/User';
+import { Token, tokenName } from '@angular/compiler';
+import { tokenKey } from '@angular/core/src/view';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,7 +18,7 @@ export class AuthenticationService {
     return this.http.post<User>('/api/users/login', { email: email,  password: password }, httpOptions)
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
-        if (user) {
+        if (user && Token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
         }

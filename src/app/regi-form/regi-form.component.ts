@@ -51,28 +51,27 @@ export class RegiFormComponent implements OnInit {
   //   return this.regiForm.controls;
   // }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     if (this.regiForm.invalid) {
       return;
     }
-    const newUser = {
-      _id: this.regiForm.value._id,
+    const newUser: User = {
+      _id: this._id,
       firstName: this.regiForm.value.firstName,
       lastName: this.regiForm.value.lastName,
       email: this.regiForm.value.email,
       password: this.regiForm.value.password.password
     };
-    this.submitted = true;
     this.userService.addUser(newUser)
     .pipe(first())
     .subscribe((res) => {
       this.router.navigate(['/']);
       this.alertService.success('Registration Successful!', true);
+      this.submitted = true;
     },
     error => {
       this.alertService.error('Not sure what happened. Try again!', error.message);
     });
-
     console.log(newUser);
   }
 }
