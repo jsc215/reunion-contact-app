@@ -13,10 +13,10 @@ let UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  phoneNumber: {
-    type: String,
-    required: false
-  },
+  // phoneNumber: {
+  //   type: String,
+  //   required: false
+  // },
   email: {
     type: String,
     required: true,
@@ -31,7 +31,7 @@ let UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 6
+    // minlength: 6
   },
   tokens: [
     {
@@ -54,7 +54,7 @@ UserSchema.methods.toJSON = function() {
   // let {_id, email} = userObject
   // let userParams = {_id, email}
   // return userParams
-  return _.pick(userObject, ['_id', 'email', 'firstName', 'lastName', 'phoneNumber']);
+  return _.pick(userObject, ['_id', 'email', 'firstName', 'lastName']);
 };
 
 UserSchema.methods.generateAuthToken = function() {
