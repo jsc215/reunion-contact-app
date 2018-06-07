@@ -67,7 +67,7 @@ export class RegiFormComponent implements OnInit {
     .pipe(first())
     .subscribe((res) => {
       this.alertService.success('Registration Successful!', true);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     },
     error => {
       this.alertService.error('Not sure what happened. Try again!', error.message);
