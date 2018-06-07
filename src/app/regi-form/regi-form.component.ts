@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { UserService } from './../services/user.service';
 import { RegistrationValidator } from '../shared/register.validator';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
@@ -11,13 +13,18 @@ import { User } from '../models/User';
 export class RegiFormComponent implements OnInit {
   regiForm: FormGroup;
   passwordFormGroup: FormGroup;
+  _id = '';
   password = '';
   submitted = false;
   firstName = '';
   lastName = '';
   email = '';
 
-  constructor(private fBuilder: FormBuilder) {
+  constructor(
+    private fBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {
     this.passwordFormGroup = this.fBuilder.group(
       {
         password: ['', Validators.required],
@@ -47,15 +54,18 @@ export class RegiFormComponent implements OnInit {
       return;
     }
     const newUser = {
-    firstName: this.regiForm.value.firstName,
-    lastName: this.regiForm.value.lastName,
-    email: this.regiForm.value.email,
-    password: this.regiForm.value.password.password
+      _id: this._id,
+      firstName: this.regiForm.value.firstName,
+      lastName: this.regiForm.value.lastName,
+      email: this.regiForm.value.email,
+      password: this.regiForm.value.password.password
     };
     this.submitted = true;
+    this.userService.addUser(newUser).subscribe((res) => {
+      this.router.navigate(['/']);
+      console.log(res);
+    });
 
-    console.log(newUser);
+    // console.log(newUser);
   }
 }
-
-

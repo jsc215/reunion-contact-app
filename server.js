@@ -1,8 +1,8 @@
+require('./server/config/config');
 const express = require('express');
 const bodyparser = require('body-parser');
 const path = require('path');
 const http = require('http');
-
 
 // express wired up
 const app = express();
@@ -28,8 +28,9 @@ app.get('*', (req, res) => {
 const cors = require('cors');
 
 // set port
-const port = process.env.PORT || '3000';
-app.set('port', port);
+const port = process.env.PORT;
+// const port = process.env.PORT || '3000';
+// app.set('port', port);
 
 const server = http.createServer(app);
 

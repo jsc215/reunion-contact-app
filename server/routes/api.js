@@ -1,3 +1,4 @@
+require('../config/config');
 const express = require('express');
 const router = express.Router();
 const ObjectID = require('mongodb').ObjectID;
@@ -18,12 +19,11 @@ router.get('/users', (req, res) => {
 
 // POST /users
 router.post('/users', (req, res) => {
-  let { email, password, firstName, lastName, phoneNumber } = req.body;
-  let body = { email, password, firstName, lastName, phoneNumber };
+  let { email, password, firstName, lastName } = req.body;
+  let body = { email, password, firstName, lastName };
   let user = new User(body);
 
-  user
-    .save()
+  user.save()
     .then(() => {
       return user.generateAuthToken();
     })
@@ -53,6 +53,13 @@ router.post('/users/login', (req, res) => {
     .catch((e) => {
       res.status(400).send();
     });
+});
+
+router.delete('/users/:id', (req, res) => {
+  User.findByIdAndRemove(req.params.id, (err, user) => {
+    if (err) return res.status(500).send("There was a problem deleting the user.");
+    res.status(200).send(`User: ${user.firstName} ${user.lastName} was deleted.`);
+  });
 });
 
 router.delete('/users/me/token', authenticate, (req, res) => {
