@@ -46,10 +46,6 @@ export class RegiFormComponent implements OnInit {
   }
 
   ngOnInit() {}
-  // convenience getter for easy access to form fields
-  // get f() {
-  //   return this.regiForm.controls;
-  // }
 
   onSubmit(form: NgForm) {
     if (this.regiForm.invalid) {
@@ -62,16 +58,19 @@ export class RegiFormComponent implements OnInit {
       email: this.regiForm.value.email,
       password: this.regiForm.value.password.password
     };
-    this.userService.addUser(newUser)
-    .pipe(first())
-    .subscribe((res) => {
-      this.router.navigate(['/']);
-      this.submitted = true;
-      this.alertService.success('Registration Successful! You can now log in', true);
-      console.log(newUser);
-    },
-    error => {
-      this.alertService.error('Not sure what happened. Try again!');
-    });
+    this.userService
+      .addUser(newUser)
+      .pipe(first())
+      .subscribe(
+        (res) => {
+          this.router.navigate(['/']);
+          this.submitted = true;
+          this.alertService.success('Registration Successful! You can now log in', true);
+          console.log(newUser);
+        },
+        (error) => {
+          this.alertService.error('Not sure what happened. Try again!');
+        }
+      );
   }
 }
