@@ -28,9 +28,9 @@ app.get('*', (req, res) => {
 const cors = require('cors');
 
 // set port
-const port = process.env.PORT;
-// const port = process.env.PORT || '3000';
-// app.set('port', port);
+// const port = process.env.PORT;
+const port = process.env.PORT || '3000';
+app.set('port', port);
 
 const server = http.createServer(app);
 
