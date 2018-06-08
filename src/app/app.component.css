@@ -1,11 +1,11 @@
 .title {
   color: white;
   flex: 1;
-  font-family: serif;
-  /* text-align: center; */
+  font-family: 'Merriweather', serif;
 }
 
 img {
+  margin-top: 50px;
   height: 90%;
   width: auto;
   border-radius: 5px;

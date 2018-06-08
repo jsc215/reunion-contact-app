@@ -1,10 +1,15 @@
+<button mat-raised-button [routerLink]="['/login']">Logout</button>
 <h3>
-  Welcome {{currentUser.firstName}}!
-  <button mat-raised-button [routerLink]="['/login']">Logout</button>
+  Hey {{currentUser.firstName}}! Thanks for joining the list...
 </h3>
+<div class='center-ghost'>
+  
+  <img src='https://dailytrackpic.files.wordpress.com/2013/11/ghostmaroonicon.jpg' />
+</div>
+
 
 <div class='table-container'>
-  <mat-form-field>
+  <mat-form-field  class='search-field'>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
   </mat-form-field>
 
