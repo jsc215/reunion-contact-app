@@ -28,7 +28,6 @@ import { RegiFormComponent } from './regi-form/regi-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatPaginator } from '@angular/material';
 import { HomeComponent } from './home/home.component';
-import { TableModule } from 'primeng/table';
 import { AlertComponent } from './alert.component';
 
 const appRoutes: Routes = [
@@ -45,7 +44,6 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    TableModule,
     MatToolbarModule,
     MatButtonModule,
     LayoutModule,

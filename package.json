@@ -41,7 +41,6 @@
     "mongodb": "^3.0.10",
     "mongoose": "^5.1.4",
     "primeicons": "^1.0.0-beta.6",
-    "primeng": "^6.0.0-beta.1",
     "rxjs": "^6.0.0",
     "validator": "^10.3.0",
     "zone.js": "^0.8.26"

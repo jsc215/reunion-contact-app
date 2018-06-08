@@ -1,12 +1,13 @@
 {
-    "test": {
-      "PORT": 3000,
-      "MONGODB_URI": "mongodb://localhost:27017/abington-reunion-app-test",
-      "JWT_SECRET": "bluevalentine"
-    },
+  "test": {
+    "PORT": 3000,
+    "MONGODB_URI": "mongodb://localhost:27017/abington-reunion-app-test",
+    "JWT_SECRET": "bluevalentine"
+  },
+  
   "development": {
     "PORT": 3000,
     "MONGODB_URI": "mongodb://localhost:27017/abington-reunion-app",
-    "JWT_SECRET": "diamondsonmywindshield"
+    "JWT_SECRET": "heartofasaturdaynight"
   }
 }
