@@ -1,5 +1,12 @@
 table {
   width: 100%;
+  font-family: 'Merriweather Sans', sans-serif;
+}
+.center-ghost {
+  text-align: center;
+}
+.search-field {
+  text-align: center;
 }
 
 .mat-form-field {
@@ -11,10 +18,10 @@ td,
 th {
   width: 25%;
 }
-
 .table-container {
   margin: auto;
-  max-width: 80%;
+  max-width: 90%;
+  margin-top: 50px;
 }
 
 th {
@@ -31,6 +38,6 @@ button {
 
 h3 {
   text-align: center;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  /* font-family: 'Merriweather', serif; */
+  font-family: 'Merriweather Sans', sans-serif;
 }
-
