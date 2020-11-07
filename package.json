@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "main": "server.js",
   "engines": {
-    "node": "8.11.2",
-    "npm": "6.1.0"
+    "node": "10.14.1",
+    "npm": "6.9.0"
   },
   "scripts": {
     "ng": "ng",
@@ -41,7 +41,6 @@
     "mongoose": "^5.5.11",
     "primeicons": "^1.0.0",
     "rxjs": "^6.5.2",
-    "save-dev": "^2.0.0",
     "validator": "^10.11.0",
     "zone.js": "^0.8.29"
   },
