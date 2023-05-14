@@ -1,6 +1,6 @@
 {
   "name": "abington-reunion-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "server.js",
   "engines": {
     "node": "14.21.3",
