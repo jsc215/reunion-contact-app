@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "main": "server.js",
   "engines": {
-    "node": "10.14.1",
-    "npm": "6.9.0"
+    "node": "14.21.3",
+    "npm": "9.6.4"
   },
   "scripts": {
     "ng": "ng",
@@ -12,9 +12,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --configuration=production"
-
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
