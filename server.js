@@ -31,7 +31,7 @@ const cors = require('cors');
 // const port = process.env.PORT;
 const port = process.env.PORT || '3000';
 app.set('port', port);
-
+console.log(process.env);
 const server = http.createServer(app);
 
 app.use(cors());
