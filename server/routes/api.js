@@ -26,22 +26,32 @@ router.get('/users', async (req, res) => {
 });
 
 // POST /users
-router.post('/users', (req, res) => {
+router.post('/users', async (req, res) => {
   let { email, password, firstName, lastName } = req.body;
   let body = { email, password, firstName, lastName };
   let user = new User(body);
 
-  user
-    .save()
-    .then(() => {
-      return user.generateAuthToken();
-    })
-    .then((token) => {
-      res.header('x-auth', token).send(user);
-    })
-    .catch((e) => {
-      res.status(400).send(e);
-    });
+  try {
+    await user.save();
+    const token = user.generateAuthToken();
+    res.header('x-auth', token).send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+
+  //   user
+  //     .save()
+  //     .then(() => {
+  //       return user.generateAuthToken();
+  //     })
+  //     .then((token) => {
+  //       res.header('x-auth', token).send(user);
+  //     })
+  //     .catch((e) => {
+  //       res.status(400).send(e);
+  //     });
+  // });
 });
 
 router.get('/users/me', authenticate, (req, res) => {
@@ -49,19 +59,27 @@ router.get('/users/me', authenticate, (req, res) => {
 });
 
 // POST /users/login
-router.post('/users/login', (req, res) => {
+router.post('/users/login', async (req, res) => {
   let { email, password } = req.body;
   let body = { email, password };
+  try {
+    const user = await User.findByCredentials(body.email, body.password);
+    const token = await user.generateAuthToken();
+    res.header('x-auth', token).send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
 
-  User.findByCredentials(body.email, body.password)
-    .then((user) => {
-      return user.generateAuthToken().then((token) => {
-        res.header('x-auth', token).send(user);
-      });
-    })
-    .catch((e) => {
-      res.status(400).send();
-    });
+  // User.findByCredentials(body.email, body.password)
+  //   .then((user) => {
+  //     return user.generateAuthToken().then((token) => {
+  //       res.header('x-auth', token).send(user);
+  //     });
+  //   })
+  //   .catch((e) => {
+  //     res.status(400).send();
+  //   });
 });
 
 router.delete('/users/:id', (req, res) => {

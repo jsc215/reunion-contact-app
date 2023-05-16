@@ -30,7 +30,7 @@ let UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: true
     // minlength: 6
   },
   tokens: [
@@ -47,7 +47,7 @@ let UserSchema = new mongoose.Schema({
   ]
 });
 
-UserSchema.methods.toJSON = function() {
+UserSchema.methods.toJSON = function () {
   let user = this;
   let userObject = user.toObject();
 
@@ -58,18 +58,17 @@ UserSchema.methods.toJSON = function() {
   return _.pick(userObject, ['_id', 'email', 'firstName', 'lastName']);
 };
 
-UserSchema.methods.generateAuthToken = function() {
+UserSchema.methods.generateAuthToken = async function () {
   let user = this;
   let access = 'auth';
   let token = jwt.sign({ _id: user._id.toHexString(), access }, process.env.JWT_SECRET).toString();
 
   user.tokens = user.tokens.concat([{ access, token }]);
-  return user.save().then(() => {
-    return token;
-  });
+
+  return user.save().then(() => token);
 };
 
-UserSchema.methods.removeToken = function(token) {
+UserSchema.methods.removeToken = function (token) {
   let user = this;
 
   return user.update({
@@ -79,7 +78,7 @@ UserSchema.methods.removeToken = function(token) {
   });
 };
 
-UserSchema.statics.findByToken = function(token) {
+UserSchema.statics.findByToken = function (token) {
   let User = this;
   let decoded;
 
@@ -96,7 +95,7 @@ UserSchema.statics.findByToken = function(token) {
   });
 };
 
-UserSchema.statics.findByCredentials = function(email, password) {
+UserSchema.statics.findByCredentials = function (email, password) {
   let User = this;
 
   return User.findOne({ email }).then((user) => {
@@ -115,7 +114,7 @@ UserSchema.statics.findByCredentials = function(email, password) {
   });
 };
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
   let user = this;
 
   if (user.isModified('password')) {
