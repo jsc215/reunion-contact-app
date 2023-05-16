@@ -1,28 +1,29 @@
 .login-form {
-width: 60%;
-margin: auto;
-text-align: center;
-margin-top: 50px;
-font-family: 'Merriweather Sans', sans-serif;}
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Merriweather Sans', sans-serif;
+}
 
 form {
-display: grid;
-justify-content: center;
-width: 100%;
+  display: grid;
+  justify-content: center;
+  width: 100%;
 }
 
 .mat-stroked-button {
-color: maroon;
+  color: maroon;
 }
 
 .mat-raised-button {
-background: maroon;
-color: white;
+  background: maroon;
+  color: white;
 }
 
 h5 {
-text-align: center;
-font-size: 2em;
-font-weight: bold;
-font-family: 'Merriweather Sans', sans-serif;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  font-family: 'Merriweather Sans', sans-serif;
 }
