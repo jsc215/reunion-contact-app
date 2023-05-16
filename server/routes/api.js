@@ -9,7 +9,6 @@ const { authenticate } = require('../middleware/authenticate');
 router.get('/users', async (req, res) => {
   try {
     const users = await User.find({});
-    console.log(users);
     res.send({ users });
   } catch (error) {
     console.log(error);
@@ -33,7 +32,7 @@ router.post('/users', async (req, res) => {
 
   try {
     await user.save();
-    const token = user.generateAuthToken();
+    const token = await user.generateAuthToken();
     res.header('x-auth', token).send(user);
   } catch (error) {
     console.log(error);
