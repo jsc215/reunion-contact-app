@@ -6,15 +6,23 @@ const { User } = require('../models/user');
 const { mongoose } = require('../db/mongoose');
 const { authenticate } = require('../middleware/authenticate');
 
-router.get('/users', (req, res) => {
-  User.find(
-    (e, users) => {
-      res.send({ users }).send;
-    },
-    (e) => {
-      res.status(400).send(e);
-    }
-  );
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.find({});
+    console.log(users);
+    res.send({ users });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+  // User.find(
+  //   (e, users) => {
+  //     res.send({ users }).send;
+  //   },
+  //   (e) => {
+  //     res.status(400).send(e);
+  //   }
+  // );
 });
 
 // POST /users
@@ -23,7 +31,8 @@ router.post('/users', (req, res) => {
   let body = { email, password, firstName, lastName };
   let user = new User(body);
 
-  user.save()
+  user
+    .save()
     .then(() => {
       return user.generateAuthToken();
     })
@@ -57,7 +66,7 @@ router.post('/users/login', (req, res) => {
 
 router.delete('/users/:id', (req, res) => {
   User.findByIdAndRemove(req.params.id, (err, user) => {
-    if (err) return res.status(500).send("There was a problem deleting the user.");
+    if (err) return res.status(500).send('There was a problem deleting the user.');
     res.status(200).send(`User: ${user.firstName} ${user.lastName} was deleted.`);
   });
 });
