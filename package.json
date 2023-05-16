@@ -37,7 +37,7 @@
     "hammerjs": "^2.0.8",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "mongodb": "^3.2.6",
+    "mongodb": "^5.5.0",
     "mongoose": "^7.1.1",
     "primeicons": "^1.0.0",
     "rxjs": "^6.5.2",
